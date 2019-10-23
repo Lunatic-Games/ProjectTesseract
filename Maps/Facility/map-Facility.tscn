@@ -17,3 +17,45 @@ material/0 = null
 shape = SubResource( 1 )
 
 [node name="FacilityEnvironment" parent="." instance=ExtResource( 2 )]
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 24.3957, 0 )
+light_color = Color( 1, 0.992157, 0.890196, 1 )
+light_energy = 2.0
+omni_range = 10.0
+omni_attenuation = 2.0
+
+[node name="OmniLight4" type="OmniLight" parent="."]
+transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, 18.3672, 0 )
+light_color = Color( 1, 0.992157, 0.890196, 1 )
+light_energy = 2.0
+omni_range = 10.0
+omni_attenuation = 2.0
+
+[node name="OmniLight2" type="OmniLight" parent="."]
+transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, -15.5234, 18.458, 4.96378 )
+light_color = Color( 1, 0.992157, 0.890196, 1 )
+light_energy = 2.0
+omni_range = 10.0
+omni_attenuation = 2.0
+
+[node name="OmniLight6" type="OmniLight" parent="."]
+transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, -7.66479, 16.646, 4.96378 )
+light_color = Color( 1, 0.992157, 0.890196, 1 )
+light_energy = 2.0
+omni_range = 10.0
+omni_attenuation = 2.0
+
+[node name="OmniLight3" type="OmniLight" parent="."]
+transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 15.8588, 18.458, -5.00483 )
+light_color = Color( 1, 0.992157, 0.890196, 1 )
+light_energy = 2.0
+omni_range = 10.0
+omni_attenuation = 2.0
+
+[node name="OmniLight5" type="OmniLight" parent="."]
+transform = Transform( 0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 8.54466, 16.7744, -5.00483 )
+light_color = Color( 1, 0.992157, 0.890196, 1 )
+light_energy = 2.0
+omni_range = 10.0
+omni_attenuation = 2.0
