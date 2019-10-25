@@ -1,4 +1,4 @@
-name: Build Develop Branch for Mac/Win/Linux
+name: Build Develop Branch
 
 on: 
   push:
