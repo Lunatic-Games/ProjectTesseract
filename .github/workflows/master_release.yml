@@ -1,0 +1,87 @@
+name: Build and Release Master Branch
+
+on: 
+  release:
+    types: [published]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@master
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install wget zip unzip
+    - name: Download Godot Headless
+      run: |
+        wget -q https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_linux_headless.64.zip
+        unzip Godot_v3.1.1-stable_linux_headless.64.zip
+        mv Godot_v3.1.1-stable_linux_headless.64 godot
+        chmod +x godot
+        
+    - name: Download Godot Export Templates
+      run: |
+        wget -q https://downloads.tuxfamily.org/godotengine/3.1.1/Godot_v3.1.1-stable_export_templates.tpz
+        mkdir -p ~/.local/share/godot/templates
+        unzip Godot_v3.1.1-stable_export_templates.tpz -d ~/.local/share/godot/templates
+        mv ~/.local/share/godot/templates/templates ~/.local/share/godot/templates/3.1.1.stable
+    - name: Export win64 build
+      run: |
+        mkdir -p builds
+        mkdir -p builds/win64
+        ./godot --path $GITHUB_WORKSPACE --export "win64" "builds/win64/ProjectTesseract.exe"
+    - name: Export macOS build
+      run: |
+        mkdir -p builds/macOS
+        ./godot --path $GITHUB_WORKSPACE --export "macOS" "builds/macOS/ProjectTesseract.app"
+    - name: Export Linux/X11 build
+      run: |
+        mkdir -p builds/linux
+        ./godot --path $GITHUB_WORKSPACE --export "linux/x11" "builds/linux/ProjectTesseract.x86_64"
+    - name: Test if exports generated files
+      run: |
+        [ "$(ls -A builds/macOS)" ] && echo "Success" || exit 1
+        [ "$(ls -A builds/win64)" ] && echo "Success" || exit 1
+        [ "$(ls -A builds/linux)" ] && echo "Success" || exit 1
+    - uses: actions/upload-artifact@master
+      with:
+        name: Windows_64
+        path: builds/win64/
+    - uses: actions/upload-artifact@master
+      with:
+        name: macOS
+        path: builds/macOS/
+    - uses: actions/upload-artifact@master
+      with:
+        name: Linux_X11
+        path: builds/linux/
+    - name: Zip Versions
+      run: |
+        cd builds
+        zip -r Windows_64.zip win64
+        zip -r Linux_X11.zip linux
+        cd ..
+        mv builds/Windows_64.zip Windows_64.zip
+        mv builds/Linux_X11.zip Linux_X11.zip 
+        mv "builds/macOS/ProjectTesseract.app" "macOS.zip"
+    - name: Upload Windows 64 to release
+      uses: JasonEtco/upload-to-release@master
+      with:
+        args: Windows_64.zip application/octet-stream
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload macOS to release
+      uses: JasonEtco/upload-to-release@master
+      with:
+        args: macOS.zip application/octet-stream
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload Linux to release
+      uses: JasonEtco/upload-to-release@master
+      with:
+        args: Linux_X11.zip application/octet-stream
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
