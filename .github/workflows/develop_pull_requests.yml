@@ -1,4 +1,4 @@
-name: Test Branch Targeting Develop for Mac/Win/Linux
+name: Build Pull Requests For Develop
 
 on: 
   pull_request:
