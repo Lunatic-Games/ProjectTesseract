@@ -1,4 +1,4 @@
-name: Build and Release Develop Branch for Mac/Win/Linux
+name: Build and Release Develop Branch
 
 on: 
   release:
