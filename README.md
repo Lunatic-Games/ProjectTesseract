@@ -2,10 +2,7 @@
 # ProjectTesseract 
 Transdimensional Combat
 ## Build Status
-
-Master Branch: ![pipeline status](https://gitlab.com/bigdavisc/projecttesseract/badges/master/pipeline.svg)
-
-Development Branch: ![pipeline status](https://gitlab.com/bigdavisc/projecttesseract/badges/develop/pipeline.svg)
+[![Actions Status](https://github.com/Lunatic-Games/ProjectTesseract/workflows/Build%20Develop%20Branch/badge.svg)](https://github.com/Lunatic-Games/ProjectTesseract/actions)
 
 ## Coding Formats:
 Variable: **snake_case**
