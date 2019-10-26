@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UIResources/Fonts/Roboto32.tres" type="DynamicFont" id=1]
+
+[node name="Control" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1868.0
+margin_bottom = -1060.0
+size_flags_horizontal = 5
+size_flags_vertical = 5
+custom_constants/separation = 50
+
+[node name="Label" type="Label" parent="."]
+margin_top = 3.0
+margin_right = 162.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 1 )
+text = "111.111.111.111"
+
+[node name="Button" type="Button" parent="."]
+margin_left = 212.0
+margin_right = 266.0
+margin_bottom = 33.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 1 )
+text = "Join"

@@ -1,9 +1,5 @@
 extends MarginContainer
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-const DEFAULT_IP = "127.0.0.1"
 const DEFAULT_PORT = 32200
 const MIN_PORT_RANGE = 32200
 const MAX_PORT_RANGE = 32299

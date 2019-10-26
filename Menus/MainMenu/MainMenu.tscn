@@ -1,79 +1,92 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Menus/MainMenu/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://UIResources/Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://UIResources/Fonts/Roboto32.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UIResources/Fonts/Roboto32.tres" type="DynamicFont" id=2]
 
-[sub_resource type="DynamicFont" id=1]
-size = 32
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 32
-font_data = ExtResource( 2 )
-
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
 
-[node name="VerticalBoxes" type="VBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -239.5
-margin_top = -78.0
-margin_right = 239.5
-margin_bottom = 78.0
+[node name="Panel" type="PanelContainer" parent="."]
+self_modulate = Color( 0.533333, 0.533333, 0.533333, 1 )
+margin_left = 676.0
+margin_top = 441.0
+margin_right = 1244.0
+margin_bottom = 638.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 561.0
+margin_bottom = 190.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 10
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 10
+
+[node name="VerticalBoxes" type="VBoxContainer" parent="Panel/MarginContainer"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 534.0
+margin_bottom = 173.0
 custom_constants/separation = 20
 
-[node name="Username" type="HBoxContainer" parent="VerticalBoxes"]
-margin_right = 579.0
+[node name="Username" type="HBoxContainer" parent="Panel/MarginContainer/VerticalBoxes"]
+margin_right = 514.0
 margin_bottom = 45.0
 
-[node name="Prompt" type="Label" parent="VerticalBoxes/Username"]
-margin_top = 3.0
-margin_right = 175.0
-margin_bottom = 41.0
-rect_min_size = Vector2( 175, 0 )
-custom_fonts/font = SubResource( 1 )
-text = "Username: "
+[node name="Prompt" type="Label" parent="Panel/MarginContainer/VerticalBoxes/Username"]
+margin_top = 9.0
+margin_right = 110.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 110, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "Username"
 
-[node name="Field" type="LineEdit" parent="VerticalBoxes/Username"]
-margin_left = 179.0
-margin_right = 579.0
+[node name="Field" type="LineEdit" parent="Panel/MarginContainer/VerticalBoxes/Username"]
+margin_left = 114.0
+margin_right = 514.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 400, 45 )
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 max_length = 15
+caret_blink = true
+caret_blink_speed = 0.5
 
-[node name="Password" type="HBoxContainer" parent="VerticalBoxes"]
+[node name="Password" type="HBoxContainer" parent="Panel/MarginContainer/VerticalBoxes"]
 margin_top = 65.0
-margin_right = 579.0
+margin_right = 514.0
 margin_bottom = 110.0
 
-[node name="Prompt" type="Label" parent="VerticalBoxes/Password"]
-margin_top = 3.0
-margin_right = 175.0
-margin_bottom = 41.0
-rect_min_size = Vector2( 175, 0 )
-custom_fonts/font = SubResource( 2 )
-text = "Password:"
+[node name="Prompt" type="Label" parent="Panel/MarginContainer/VerticalBoxes/Password"]
+margin_top = 9.0
+margin_right = 110.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 110, 0 )
+custom_fonts/font = ExtResource( 2 )
+text = "Password"
 
-[node name="Field" type="LineEdit" parent="VerticalBoxes/Password"]
-margin_left = 179.0
-margin_right = 579.0
+[node name="Field" type="LineEdit" parent="Panel/MarginContainer/VerticalBoxes/Password"]
+margin_left = 114.0
+margin_right = 514.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 400, 45 )
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 2 )
 max_length = 15
 secret = true
+caret_blink = true
+caret_blink_speed = 0.5
 
-[node name="ConnectButton" type="Button" parent="VerticalBoxes"]
+[node name="ConnectButton" type="Button" parent="Panel/MarginContainer/VerticalBoxes"]
+self_modulate = Color( 0.917647, 0.917647, 0.917647, 1 )
+margin_left = 190.0
 margin_top = 130.0
-margin_right = 579.0
+margin_right = 324.0
 margin_bottom = 163.0
-custom_fonts/font = ExtResource( 3 )
-text = "Connect"
-[connection signal="pressed" from="VerticalBoxes/ConnectButton" to="." method="_on_ConnectButton_pressed"]
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 2 )
+text = "    Connect    "
+[connection signal="pressed" from="Panel/MarginContainer/VerticalBoxes/ConnectButton" to="." method="_on_ConnectButton_pressed"]

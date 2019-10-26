@@ -1,36 +1,36 @@
 extends Control
 
 func _ready():
-	loadUserData()
-	
-func _on_ConnectButton_pressed():
-	if $VerticalBoxes/Username/Field.text == "":
+	_load_last_username()
+
+# attempt to load last-used username
+func _load_last_username() -> void:
+	var save_file = File.new()
+	if not save_file.file_exists("user://last_username.save"):
 		return
-	saveUserData()
-	UserSettings.user_name = $VerticalBoxes/Username/Field.text
-	_load_game()
-
-
-func _load_game():
-	get_tree().change_scene('res://Menus/Lobby/Lobby.tscn')
 	
-func saveUserData():
+	save_file.open("user://last_username.save", File.READ)
+	var line = parse_json(save_file.get_line())
+	$Panel/MarginContainer/VerticalBoxes/Username/Field.text = line["username"]
+	save_file.close()
+
+# login
+func _on_ConnectButton_pressed():
+	if $Panel/MarginContainer/VerticalBoxes/Username/Field.text == "":
+		return
+	_save_last_username()
+	UserSettings.user_name = $Panel/MarginContainer/VerticalBoxes/Username/Field.text
+	
+	# warning-ignore:return_value_discarded
+	get_tree().change_scene('res://Menus/LobbySearch/LobbySearch.tscn')
+
+# save last used username
+func _save_last_username():
 	var save_data = {
-		"username" : $VerticalBoxes/Username/Field.text,
-		"password" : $VerticalBoxes/Password/Field.text
+		"username" : $Panel/MarginContainer/VerticalBoxes/Username/Field.text,
 	}
 	var save_file = File.new()
-	save_file.open("user://savedata.save", File.WRITE)
+	save_file.open("user://last_username.save", File.WRITE)
 	save_file.store_line(to_json(save_data))
 	save_file.close()
 	
-func loadUserData():
-	var save_file = File.new()
-	if not save_file.file_exists("user://savedata.save"):
-		return
-		
-	save_file.open("user://savedata.save", File.READ)
-	var line = parse_json(save_file.get_line())
-	$VerticalBoxes/Username/Field.text = line["username"]
-	$VerticalBoxes/Password/Field.text = line["password"]
-	save_file.close()
