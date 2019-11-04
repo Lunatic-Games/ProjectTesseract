@@ -11,11 +11,13 @@ margin_right = -150.0
 margin_bottom = -150.0
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+editor/display_folded = true
 self_modulate = Color( 0.533333, 0.533333, 0.533333, 1 )
 margin_right = 1620.0
 margin_bottom = 780.0
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+editor/display_folded = true
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 1613.0
